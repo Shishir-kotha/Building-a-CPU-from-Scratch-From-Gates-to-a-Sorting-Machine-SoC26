@@ -467,4 +467,4 @@ More logic gates, truth tables, combine circuits A and B, ring or vibrate, 256 t
 DFF, DFF with reset, DFF with asynchronous reset, DFFs and gates, 4-bit binary counter, Decade counter, 4-bit shift register,3-input LUT
 
 ---
-
+hii
