@@ -3,19 +3,19 @@
 ## Objective
 
 Design and implement a simplified CPU capable of executing a bubble sort algorithm. Your processor should be able to read an unsorted array from memory, sort it, and write the sorted array back into the memory. 
-In the last week, the ISA and the hardware architecture was directly given to you and it was concentrated on the implemtations part. This week, you will have to use the processor that you built in week 5 as reference and modify it into a multicycle cpu.   
+In the last week, the ISA and the hardware architecture were directly given to you, and most of the time was spent on the implementation part. This week, you will have to use the processor that you built in week 5 as a reference and modify it into a multicycle CPU.   
 
 
 ---
 ## Some General Instructions
 Theory:  
-First read 5.5 in textbook and understand how the instructions are divided into various stages of execution.
+First read 5.5 in the textbook and understand how the instructions are divided into various stages of execution, and also see how the data flows for each stage of an instruction.
 
 Implementation:  
 The two major parts that you need to fully redesign are the datapath and the control unit. All other components, like the decoder, ALU, register bank, etc., can be reused.
 
 Read up on how the hardware is modified, and based on that, you have to design the hardware yourself (or you can use the one that is provided), and then move on to the control unit.  
-Note : I would suggest that you design the hardware yourself, but if it's too much, you can refer to or use the one provided in the next section.  
+Note: I would suggest that you design the hardware yourself, but if it's too much, you can refer to or use the one provided in the next section.  
 
 The control unit will turn out to be an FSM. You will have to carefully keep track of what control signals (c1,c2,..) you are enabling in each instruction cycle.
 It's really easy to make errors while making the control unit, so be careful.
