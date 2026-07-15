@@ -31,7 +31,7 @@ Next, start making pipeline registers.
 
 # Step 3: Handling Data Hazards
 ## Data Forwarding
-Refer to these h&p for the theory
+Refer to h&p for the theory
 ```verilog
   reg [7:0] ID_EX_reg1_forw, ID_EX_reg2_forw; // these are the outputs after compensating for data forwarding
   always@(*) begin
