@@ -12,7 +12,7 @@ This is the modified data path
 
 Some major changes made to the data path are as follows
 ### Pipeline Registers
-*a lot of them  
+*there will be a lot of them  
 Every meaningful or useful output of one stage is stored in the pipeline registers for use in the next stage, similar to the multi-cycle implementation, but here the control signals are also forwarded; you can take care of control signals later, first make the data path properly. 
 The inputs to the registers write select are permanently fixed to RX and RY, respectively, for registers 1 and 2;
 
