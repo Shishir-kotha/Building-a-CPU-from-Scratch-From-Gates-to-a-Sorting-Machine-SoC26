@@ -1,4 +1,4 @@
-# Making Final the Pipelined Processor
+# Making the Pipelined Processor
 
 The pipelined processor is closer to the single-cycle implementation than the multicycle one in the sense that the control is not really a finite state machine
 So, try modifying the single-cycle data path and control, and I have provided the code snippets to make your life easier, but if it's confusing, ask me anytime.
