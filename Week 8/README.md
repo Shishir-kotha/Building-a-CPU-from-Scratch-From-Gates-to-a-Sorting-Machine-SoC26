@@ -4,7 +4,7 @@ The pipelined processor is closer to the single-cycle implementation than the mu
 So, try modifying the single-cycle data path and control, and I have provided the code snippets to make your life easier, but if it's confusing, ask me anytime.
 
 # Step 1: Modifying the data-path
-Split the datapath into 5 different stages: IF|ID|EXE|MEM|WB 
+Split the datapath into 5 different stages: IF|ID|EX|MEM|WB 
 Now add the pipeline registers and try to follow a naming convention, for example, IF_ID_RX_out for the output of the RX field register stored between IF and ID stages. Being verbose will help you while writing the code and debugging
 
 This is the modified data path 
@@ -13,10 +13,11 @@ This is the modified data path
 Some major changes made to the data path are as follows
 ### Pipeline Registers
 *there will be a lot of them  
-Every meaningful or useful output of one stage is stored in the pipeline registers for use in the next stage, similar to the multi-cycle implementation, but here the control signals are also forwarded; you can take care of control signals later, first make the data path properly. 
+Every meaningful or useful output from one stage is stored in pipeline registers for use by the next stage, similar to the multi-cycle implementation. This includes instruction fields, operands, ALU outputs, immediates, PC values, and eventually control signals. You can take care of control signals later; first, make the data path properly. 
 The inputs to the registers write select are permanently fixed to RX and RY, respectively, for registers 1 and 2;
 
 ### Swap block
+Without this block, data forwarding will become complicated 
 This block is to correct for the fact that in the original single-cycle control unit, for instructions MOVEE, STORE, STOREF, and LOAD, the register fields used for register 1 and register 2 are swapped  
 The swap_en signal is asserted when an instruction is one of the 4 instructions  
 This way, data forwarding will be the same as the one mentioned in Hennessy and Patterson 
@@ -31,7 +32,8 @@ Next, start making pipeline registers.
 
 # Step 3: Handling Data Hazards
 ## Data Forwarding
-Refer to h&p for the theory
+Refer to h&p for the theory 
+This is a direct implementation of the data forwarding mentioned in h&p 
 ```verilog
   reg [7:0] ID_EX_reg1_forw, ID_EX_reg2_forw; // these are the outputs after compensating for data forwarding
   always@(*) begin
@@ -52,8 +54,8 @@ Refer to h&p for the theory
 	 end
   end
 ```
-Modify this thing with your variable names. This is a direct implementation of the data forwarding mentioned in h&p  
-After swap module will be instantiated after this, taking in ID_EX_reg1_forw, ID_EX_reg2_forw as inputs  
+Modify this thing with your variable names.  
+The swap module will be instantiated after this, taking in ID_EX_reg1_forw, ID_EX_reg2_forw as inputs  
 ## Data Stalls for load-use and flag-use cases
 ```verilog
   reg data_stall; //for stall cycle
@@ -69,7 +71,7 @@ After swap module will be instantiated after this, taking in ID_EX_reg1_forw, ID
       end
   end
 ```
-Instead of stalling for the flags to be ready, you can also try data forwarding if you so wish 
+Instead of stalling for the flags to be ready, you can also try data forwarding if you so wish but its not required for the submission 
 You have to disable the enable for pc register and the IF/ID pipeline registers during a stall, i.e., the enable signal will be !data_stall 
 And flush the ID/EX pipeline register outputs, i.e., make them zero 
 # Step 4: Handling Control Hazards
