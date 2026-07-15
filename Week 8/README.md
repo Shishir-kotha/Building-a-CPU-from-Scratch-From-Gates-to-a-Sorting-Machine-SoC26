@@ -83,7 +83,7 @@ ID_EX_c[2] will determine if a branch is taken
 ID_EX_c[2]) ? pc_branch : pc_seq will be the input to pc register
 IF/ID and ID/EX pipeline registers are flushed if ID_EX_c[2] is asserted 
 example: 
-data_stall||ID_EX_c[2])? 19'b0 :c will be the input for the ID/EX pipeline register for control signals, taking the stall and control hazard into account
+(data_stall||ID_EX_c[2])? 19'b0 :c will be the input for the ID/EX pipeline register for control signals, taking the stall and control hazard into account
 
 # Step 5: Debug
 Run the bubble sort routine and try to check for the pc register, in particular, if there are any issues
